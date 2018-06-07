@@ -7,11 +7,15 @@
 #define MIDI_EVENT_SCHED_MS 100
 
 #define TEST_NOTE_MIN 40
-#define TEST_NOTE_MAX 110
+#define TEST_NOTE_MAX 107
 #define TEST_VEL_MIN 60
 #define TEST_VEL_MAX 120
 #define TEST_DUR_MIN 150
 #define TEST_DUR_MAX 1000
+
+#define MASTER_KEY_MIDI 84      // C6
+#define MASTER_NUM1 24          // C1
+#define MASTER_BANK_SELECT 83   // B5
 
 class midi_event {
   public:
@@ -35,7 +39,27 @@ void setup()
   sched.addJob(ledDecay, LED_DECAY_MS);
   sched.addJob(do_midi_events, MIDI_EVENT_SCHED_MS);
 
-  randomSeed(analogRead(A0));  
+  randomSeed(analogRead(A0));
+
+  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+  delay(500);
+  MIDI.sendNoteOn(MASTER_NUM1 + 28, 66, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_NUM1 + 28, 0, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+  
+  delay(2000);
+
+  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+  delay(500);
+  MIDI.sendNoteOn(MASTER_NUM1 + 3, 66, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_NUM1 + 3, 0, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+
+  delay(5000);
 }
 
 void loop()
@@ -57,15 +81,15 @@ void sendMIDI(int8_t note, int8_t vel, int8_t chan, int8_t dur)
   MIDIEvents.add(m);
   digitalWrite(LED, HIGH);
   MIDI.sendNoteOn(note, vel, chan);
-/*  Serial.print(F("Sending MIDI on channel "));
-  Serial.print(chan);
-  Serial.print(F(" note "));
-  Serial.print(note);
-  Serial.print(F(" velocity "));
-  Serial.print(vel);
-  Serial.print(F(" duration "));
-  Serial.print(dur);
-  Serial.println();*/
+  /*  Serial.print(F("Sending MIDI on channel "));
+    Serial.print(chan);
+    Serial.print(F(" note "));
+    Serial.print(note);
+    Serial.print(F(" velocity "));
+    Serial.print(vel);
+    Serial.print(F(" duration "));
+    Serial.print(dur);
+    Serial.println();*/
 }
 
 void ledDecay(void)
