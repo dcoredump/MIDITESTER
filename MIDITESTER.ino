@@ -59,6 +59,26 @@ void setup()
   delay(500);
   MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
 
+  delay(2000);
+
+  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+  delay(500);
+  MIDI.sendNoteOn(MASTER_NUM1 + 30, 66, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_NUM1 + 30, 0, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+  
+  delay(2000);
+
+  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+  delay(500);
+  MIDI.sendNoteOn(MASTER_NUM1 + 28, 66, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_NUM1 + 28, 0, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+  
   delay(5000);
 }
 
