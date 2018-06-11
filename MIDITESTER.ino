@@ -1,21 +1,21 @@
 #include <MIDI.h>
 #include <looper.h>
 #include <LinkedList.h>
+#include "midinotes.h"
 
 #define LED 13
 #define LED_DECAY_MS 50
 #define MIDI_EVENT_SCHED_MS 100
 
-#define TEST_NOTE_MIN 40
-#define TEST_NOTE_MAX 107
+#define TEST_NOTE_MIN MIDI_A0
+#define TEST_NOTE_MAX MIDI_B5
 #define TEST_VEL_MIN 60
 #define TEST_VEL_MAX 120
 #define TEST_DUR_MIN 150
 #define TEST_DUR_MAX 1000
 
-#define MASTER_KEY_MIDI 84      // C6
-#define MASTER_NUM1 24          // C1
-#define MASTER_BANK_SELECT 83   // B5
+#define MASTER_KEY_MIDI    MIDI_B6
+#define MASTER_NUM1        MIDI_C1
 
 class midi_event {
   public:
@@ -41,41 +41,56 @@ void setup()
 
   randomSeed(analogRead(A0));
 
+  // Sound change 17
   MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
   delay(500);
-  MIDI.sendNoteOn(MASTER_NUM1 + 28, 66, 1);
+  MIDI.sendNoteOn(MIDI_E3, 66, 1);
   delay(500);
-  MIDI.sendNoteOff(MASTER_NUM1 + 28, 0, 1);
+  MIDI.sendNoteOff(MIDI_E3, 0, 1);
   delay(500);
   MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
   
   delay(2000);
 
+  // Volume change 0.5
   MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
   delay(500);
-  MIDI.sendNoteOn(MASTER_NUM1 + 3, 66, 1);
+  MIDI.sendNoteOn(MIDI_AIS1, 66, 1);
   delay(500);
-  MIDI.sendNoteOff(MASTER_NUM1 + 3, 0, 1);
+  MIDI.sendNoteOff(MIDI_AIS1, 0, 1);
   delay(500);
   MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
 
   delay(2000);
 
+  // Bank change 3
   MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
   delay(500);
-  MIDI.sendNoteOn(MASTER_NUM1 + 30, 66, 1);
+  MIDI.sendNoteOn(MIDI_FIS3, 66, 1);
   delay(500);
-  MIDI.sendNoteOff(MASTER_NUM1 + 30, 0, 1);
+  MIDI.sendNoteOff(MIDI_FIS3, 0, 1);
   delay(500);
   MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
   
   delay(2000);
-
+  
+  // Sound change 17
   MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
   delay(500);
-  MIDI.sendNoteOn(MASTER_NUM1 + 28, 66, 1);
+  MIDI.sendNoteOn(MIDI_E3, 66, 1);
   delay(500);
-  MIDI.sendNoteOff(MASTER_NUM1 + 28, 0, 1);
+  MIDI.sendNoteOff(MIDI_E3, 0, 1);
+  delay(500);
+  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+
+  delay(2000);
+
+    // Volume change 0.1
+  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+  delay(500);
+  MIDI.sendNoteOn(MIDI_DIS1, 66, 1);
+  delay(500);
+  MIDI.sendNoteOff(MIDI_DIS1, 0, 1);
   delay(500);
   MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
   
