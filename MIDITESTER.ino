@@ -11,10 +11,10 @@
 #define TEST_NOTE_MAX MIDI_B5
 #define TEST_VEL_MIN 60
 #define TEST_VEL_MAX 120
-#define TEST_DUR_MIN 150
-#define TEST_DUR_MAX 1000
+#define TEST_DUR_MIN 200
+#define TEST_DUR_MAX 1500
 
-#define MASTER_KEY_MIDI    MIDI_B6
+#define MASTER_KEY_MIDI    MIDI_C6
 #define MASTER_NUM1        MIDI_C1
 
 class midi_event {
@@ -49,7 +49,7 @@ void setup()
   MIDI.sendNoteOff(MIDI_E3, 0, 1);
   delay(500);
   MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
-  
+
   delay(2000);
 
   // Volume change 0.5
@@ -71,9 +71,9 @@ void setup()
   MIDI.sendNoteOff(MIDI_FIS3, 0, 1);
   delay(500);
   MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
-  
+
   delay(2000);
-  
+
   // Sound change 17
   MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
   delay(500);
@@ -85,7 +85,7 @@ void setup()
 
   delay(2000);
 
-    // Volume change 0.1
+  // Volume change 0.1
   MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
   delay(500);
   MIDI.sendNoteOn(MIDI_DIS1, 66, 1);
@@ -93,7 +93,7 @@ void setup()
   MIDI.sendNoteOff(MIDI_DIS1, 0, 1);
   delay(500);
   MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
-  
+
   delay(5000);
 }
 
@@ -107,7 +107,7 @@ void loop()
   sched.scheduler();
 }
 
-void sendMIDI(int8_t note, int8_t vel, int8_t chan, int8_t dur)
+void sendMIDI(int8_t note, int8_t vel, int8_t chan, uint32_t dur)
 {
   midi_event *m = new midi_event();
   m->note = note;
@@ -140,8 +140,7 @@ void do_midi_events(void)
   {
     midi_event *m = MIDIEvents.get(i);
 
-    // If its a mammal, then print it's name
-    if (m->dur < millis())
+    if (millis() > m->dur)
     {
       MIDI.sendNoteOff(m->note, 0, m->chan);
       MIDIEvents.remove(i);

@@ -2,6 +2,9 @@
  * MIDI note values
  *************************************************/
 
+#ifndef _MIDINOTES_H
+#define _MIDINOTES_H
+
 #define MIDI_A0   21
 #define MIDI_AIS0 22
 #define MIDI_B0   23
@@ -90,3 +93,5 @@
 #define MIDI_AIS7 106
 #define MIDI_B7   107
 #define MIDI_C8   108
+
+#endif
