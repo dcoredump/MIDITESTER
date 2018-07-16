@@ -41,60 +41,62 @@ void setup()
 
   randomSeed(analogRead(A0));
 
-  // Sound change 17
-  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
-  delay(500);
-  MIDI.sendNoteOn(MIDI_E3, 66, 1);
-  delay(500);
-  MIDI.sendNoteOff(MIDI_E3, 0, 1);
-  delay(500);
-  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+  /*
+    // Sound change 17
+    MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+    delay(500);
+    MIDI.sendNoteOn(MIDI_E3, 66, 1);
+    delay(500);
+    MIDI.sendNoteOff(MIDI_E3, 0, 1);
+    delay(500);
+    MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
 
-  delay(2000);
+    delay(2000);
 
-  // Volume change 0.5
-  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
-  delay(500);
-  MIDI.sendNoteOn(MIDI_AIS1, 66, 1);
-  delay(500);
-  MIDI.sendNoteOff(MIDI_AIS1, 0, 1);
-  delay(500);
-  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+    // Volume change 0.5
+    MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+    delay(500);
+    MIDI.sendNoteOn(MIDI_AIS1, 66, 1);
+    delay(500);
+    MIDI.sendNoteOff(MIDI_AIS1, 0, 1);
+    delay(500);
+    MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
 
-  delay(2000);
+    delay(2000);
 
-  // Bank change 3
-  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
-  delay(500);
-  MIDI.sendNoteOn(MIDI_FIS3, 66, 1);
-  delay(500);
-  MIDI.sendNoteOff(MIDI_FIS3, 0, 1);
-  delay(500);
-  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+    // Bank change 3
+    MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+    delay(500);
+    MIDI.sendNoteOn(MIDI_FIS3, 66, 1);
+    delay(500);
+    MIDI.sendNoteOff(MIDI_FIS3, 0, 1);
+    delay(500);
+    MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
 
-  delay(2000);
+    delay(2000);
 
-  // Sound change 17
-  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
-  delay(500);
-  MIDI.sendNoteOn(MIDI_E3, 66, 1);
-  delay(500);
-  MIDI.sendNoteOff(MIDI_E3, 0, 1);
-  delay(500);
-  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+    // Sound change 17
+    MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+    delay(500);
+    MIDI.sendNoteOn(MIDI_E3, 66, 1);
+    delay(500);
+    MIDI.sendNoteOff(MIDI_E3, 0, 1);
+    delay(500);
+    MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
 
-  delay(2000);
+    delay(2000);
 
-  // Volume change 0.1
-  MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
-  delay(500);
-  MIDI.sendNoteOn(MIDI_DIS1, 66, 1);
-  delay(500);
-  MIDI.sendNoteOff(MIDI_DIS1, 0, 1);
-  delay(500);
-  MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
+    // Volume change 0.1
+    MIDI.sendNoteOn(MASTER_KEY_MIDI, 99, 1);
+    delay(500);
+    MIDI.sendNoteOn(MIDI_DIS1, 66, 1);
+    delay(500);
+    MIDI.sendNoteOff(MIDI_DIS1, 0, 1);
+    delay(500);
+    MIDI.sendNoteOff(MASTER_KEY_MIDI, 0, 1);
 
-  delay(5000);
+    delay(5000);
+  */
 }
 
 void loop()
@@ -116,7 +118,8 @@ void sendMIDI(int8_t note, int8_t vel, int8_t chan, uint32_t dur)
   MIDIEvents.add(m);
   digitalWrite(LED, HIGH);
   MIDI.sendNoteOn(note, vel, chan);
-  /*  Serial.print(F("Sending MIDI on channel "));
+  /*
+    Serial.print(F("Sending MIDI on channel "));
     Serial.print(chan);
     Serial.print(F(" note "));
     Serial.print(note);
